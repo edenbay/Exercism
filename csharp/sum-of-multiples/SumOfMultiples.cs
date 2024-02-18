@@ -107,39 +107,25 @@ namespace penis
 
     public class Lion : Animal
     {
-        
 
-        public Lion()
-        {
-            
-        }
+        var g = from multiple in multiples.TakeWhile(i => i < max)
+                where multiple += multiple
+                select multiple;
+                
+
+
+        var unfilteredMultiples = from multiple in multiples
+                                  where multiple + multiple < max 
+                                  select multiple;
     }
 
-    public class Tiger : Animal
+    public static IEnumerable<int> RemoveDuplicates(IEnumerable<int> multiples, int max)
     {
-        public Tiger()
-        {
-            
-        }
+        throw new NotImplementedException("TODO;");
     }
 
-    public class Duck : Animal
+    private static bool IsUnderMax(this int multiple, int max)
     {
-        public override int NumberOfLegs { get => 2; }
-
-        public Duck()
-        {
-            
-        }
-    }
-
-    public class Spider : Animal
-    {
-        public override int NumberOfLegs { get => 8; }
-
-        public Spider()
-        {
-            
-        }
+        return multiple < max;
     }
 }
