@@ -1,34 +1,28 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System.Linq;
 
 public static class SumOfMultiples
 {
-    public static int Sum(IEnumerable<int> multiples, int max) 
-{
-    var result = RemoveDuplicates(multiples, max).ToList();
-    return result.Sum();
-}
-
-public static IEnumerable<int> FindMultiplesUnderMax(IEnumerable<int> multiples, int max)
-{
-    List<int> mul = new List<int>();
-    
-    foreach (int multiple in multiples)
+    public static int Sum(IEnumerable<int> multiples, int max)
     {
-        int num = multiple;
-        while (num < max) 
+        List<int> ints = new();
+
+        for (int i = 0; i < multiples.Count(); i++)
         {
-            mul.Add(num);
-            num += multiple;
-        }           
+            int baseMultiple = multiples.ElementAt(i);
+            if (baseMultiple < 1)
+                continue;
+
+            int multiple = baseMultiple;
+            while (multiple < max)
+            {
+                ints.Add(multiple);
+                multiple += baseMultiple;
+            }
+        }
+
+        return ints.Distinct().ToList().Sum();
+
     }
-    return mul;
-}
-
-public static IEnumerable<int> RemoveDuplicates(IEnumerable<int> multiples, int max) 
-{
-       return FindMultiplesUnderMax(multiples, max).ToList().Distinct().ToList();
-}
-
 }
