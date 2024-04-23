@@ -6,23 +6,9 @@ public static class SumOfMultiples
 {
     public static int Sum(IEnumerable<int> multiples, int max)
     {
-        List<int> ints = new();
-
-        for (int i = 0; i < multiples.Count(); i++)
-        {
-            int baseMultiple = multiples.ElementAt(i);
-            if (baseMultiple < 1)
-                continue;
-
-            int multiple = baseMultiple;
-            while (multiple < max)
-            {
-                ints.Add(multiple);
-                multiple += baseMultiple;
-            }
-        }
-
-        return ints.Distinct().ToList().Sum();
-
+        return Enumerable.Range(1, max - 1)
+            .Where(i => multiples
+            .Any(m => m != 0 && i % m == 0))
+            .Sum();
     }
 }

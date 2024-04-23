@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace penis
+namespace Exercise
 {
     static class Program
     {
         public static void Main(string[] args) 
         {
-        Exercise de = new Exercise();
-          de.GetCountsOfAnimalsLegs();
+            SumOfMultiples.Sum(new int[] {3,5}, 20);
         }
     }
 }
